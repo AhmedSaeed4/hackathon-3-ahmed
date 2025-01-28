@@ -87,8 +87,9 @@ interface ProductSummary {
 }
 
 const Listings3 = async () => {
-
-  const sanityres = await client.fetch(`*[_type == "product"][0...16]{
+let sanityres;
+try{
+   sanityres = await client.fetch(`*[_type == "product"][0...16]{
   _id,  
   name,
   "slug": slug.current,
@@ -103,7 +104,10 @@ const Listings3 = async () => {
     name,  
     slug    
   }
-}`)
+}`)} catch (error) {
+  console.error("Error fetching products:", error);
+  return <div>Failed to load products. Please try again later.</div>;
+}
   return (
     <div className="w-auto flex-col sm:px-[80px] px-[24px] gap-4 pb-2 flex sm:pb-[40px]">
        

@@ -17,7 +17,9 @@ interface Props {
 
 const Page = async ({ params }: Props) => {
   // Sanity data fetch
-  const sanityres = await client.fetch(
+  let sanityres;
+  try{
+   sanityres = await client.fetch(
     `*[_type == "product" && slug.current == $slug]{
       _id,
       name,
@@ -43,6 +45,9 @@ const Page = async ({ params }: Props) => {
 
   if (!sanityres || sanityres.length === 0) {
     return <div>Product not found.</div>;
+  }} catch (error) { 
+    console.error("Error fetching products:", error);
+    return <div>Failed to load products. Please try again later.</div>;
   }
 
   return (
