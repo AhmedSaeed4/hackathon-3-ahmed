@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 import { useRouter } from "next/navigation";
+import { signOut } from "firebase/auth";
 
 const Page: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -11,15 +12,22 @@ const Page: React.FC = () => {
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
-    if(user){route.push("/")};
-
+  if (user) {
+    console.log("");
+  }
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault(); // Prevent page reload
     try {
       const res = await signInWithEmailAndPassword(email, password);
       if (res?.user) {
-        // Successful login
-        console.log("Logged in user:", res.user);
+        // Check if email is verified
+        if (!res.user.emailVerified) {
+          await signOut(auth); // Sign out user if not verified
+          alert("Please verify your email before logging in.");
+          return;
+        }
+
+        console.log("Logged in user:");
         setEmail("");
         setPassword("");
         route.push("/"); // Redirect to homepage
@@ -32,9 +40,11 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex font-clash items-center justify-center">
-      <div className="bg-gray-800 text-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Log In</h2>
+    <div className="min-h-screen bg-gray-50 flex font-clash items-center justify-center p-4">
+      <div className="bg-white text-gray-900 rounded-lg shadow-md w-full max-w-md p-6 sm:p-8">
+        <h2 className="text-2xl font-semibold mb-6 text-center text-[#2A254B]">
+          Log In
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="email" className="block text-sm font-medium mb-2">
@@ -46,7 +56,7 @@ const Page: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring focus:ring-indigo-500 focus:border-indigo-500 border border-gray-600"
+              className="w-full px-4 py-2 rounded-md bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#2A254B] focus:border-[#2A254B] border border-gray-300"
             />
           </div>
 
@@ -60,13 +70,13 @@ const Page: React.FC = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-2 rounded-md bg-gray-700 text-white focus:outline-none focus:ring focus:ring-indigo-500 focus:border-indigo-500 border border-gray-600"
+              className="w-full px-4 py-2 rounded-md bg-gray-100 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#2A254B] focus:border-[#2A254B] border border-gray-300"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
+            className="w-full bg-[#2A254B] hover:bg-[#423980] text-white font-medium py-2 px-4 rounded-md transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#423980]"
             disabled={loading} // Disable the button while logging in
           >
             {loading ? "Logging In..." : "Log In"}
@@ -79,9 +89,9 @@ const Page: React.FC = () => {
           </p>
         )}
 
-        <p className="text-sm text-gray-400 mt-4 text-center">
-          Dont have an account?{" "}
-          <a href="../sign-up" className="text-indigo-500 hover:underline">
+        <p className="text-sm text-gray-500 mt-4 text-center">
+          Don&apos;t have an account?{" "}
+          <a href="../sign-up" className="text-[#2A254B] hover:underline">
             Sign Up
           </a>
         </p>

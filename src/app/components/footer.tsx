@@ -8,6 +8,7 @@ import skype from "../assets/logos/skype.png"
 import linkedin from "../assets/logos/linkedin.png"
 
 const Footer = () => {
+  
   return (
     <div className=" px-6 sm:px-[82px] py-8 bg-[#2A254B] sm:pt-[58px]">
       <div className="flex flex-wrap gap-12 sm:gap-[133px]">
@@ -86,9 +87,9 @@ const Footer = () => {
           <h1>Copyright 2022 Avion LTD</h1>
         </div>
         <div className="flex gap-[24px]">
-          <Link href="/" className="w-[24px] h-[24px] flex justify-center items-center "><Image src={linkedin} alt="" className="w-[18px] h-[17.92px] "/> </Link>
+          <a href="https://www.linkedin.com/in/ahmed-saeed-0278a12b5/" className="w-[24px] h-[24px] flex justify-center items-center "><Image src={linkedin} alt="" className="w-[18px] h-[17.92px] "/> </a>
           <Link href="/" className="w-[24px] h-[24px] flex justify-center items-center "><Image src={face} alt="" className="w-[18px] h-[18px] "/> </Link>
-          <Link href="/" className="w-[24px] h-[24px] flex justify-center items-center "><Image src={insta} alt="" className="w-[18px] h-[18px] "/> </Link>
+          <a href="https://www.instagram.com/mizuu.edit/" className="w-[24px] h-[24px] flex justify-center items-center "><Image src={insta} alt="" className="w-[18px] h-[18px] "/> </a>
           <Link href="/" className="w-[24px] h-[24px] flex justify-center items-center "><Image src={skype} alt="" className="w-[19.37px] h-[19.42px] "/> </Link>
           <Link href="/" className="w-[24px] h-[24px] flex justify-center items-center "><Image src={twitter} alt="" className="w-[16.5px] h-[13.41px] "/> </Link>
           <Link href="/" className="w-[24px] h-[24px] flex justify-center items-center "><Image src={pin} alt="" className="w-[20.93px] h-[21px] "/> </Link>

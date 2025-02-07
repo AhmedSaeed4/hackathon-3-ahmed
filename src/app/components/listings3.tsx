@@ -122,7 +122,7 @@ try{
         
     </div>
    
-    <Link href={'allproducts'} id="button-medium" className=" w-auto sm:w-auto h-auto  bg-[#F9F9F9] flex mt-[40px] text-nowrap justify-center items-center self-center max-w-max  sm:mt-12 py-[16px] px-[32px] ">
+    <Link href={'allproducts'} id="button-medium" className=" w-auto sm:w-auto h-auto transition-all duration-300 ease-in-out transform hover:scale-110 hover:bg-gray-300 bg-[#F9F9F9] flex mt-[40px] text-nowrap justify-center items-center self-center max-w-max  sm:mt-12 py-[16px] px-[32px] ">
           <p className="font-satoshi font-normal text-[16px] leading-[24px] ">View Collection</p>
     
 </Link>

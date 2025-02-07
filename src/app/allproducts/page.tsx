@@ -1,6 +1,6 @@
 //import { client } from "@/sanity/lib/client"
 import Allproducts from "../components/Allproducts"
-import Filters from "../components/filters"
+//import Filters from "../components/filters"
 import Footer from "../components/footer"
 import Listings3 from "../components/listings3"
 
@@ -27,7 +27,7 @@ const AllProducts = async () => {
     <div>
         
         <Allproducts/>
-        <Filters/>
+        {/*<Filters/>*/}
         <Listings3/>
         <Footer/>
     </div>

@@ -67,13 +67,13 @@ const Page = async ({ params }: Props) => {
   return (
     <>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-4 capitalize">{sanityres[0].category.name} Products</h1>
+        <h1 className="text-2xl font-normal font-clash mb-4 capitalize">{sanityres[0].category.name} Products</h1>
         
         {/* Display Products */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {sanityres.map((product:Product) => (
             <Link key={product._id} href={`/productpages/${product.slug}`}>
-              <div className="border rounded p-4 shadow hover:shadow-lg transition">
+              <div className="border font-clash rounded p-4 shadow hover:shadow-lg transition">
                 <img
                   src={product.imageUrl}
                   alt={product.name}
@@ -81,7 +81,7 @@ const Page = async ({ params }: Props) => {
                   height={300}
                   className="w-full h-48 object-cover rounded"
                 />
-                <h2 className="mt-2 font-bold">{product.name}</h2>
+                <h2 className="mt-2 font-normal">{product.name}</h2>
                 <p className="text-gray-600">${product.price}</p>
               </div>
             </Link>

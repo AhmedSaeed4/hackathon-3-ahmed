@@ -119,6 +119,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
   const RemoveFromWish = (id: string) => {
     const updatedWishlist = wishlist.filter((item) => item._id !== id);
     setWishlist(updatedWishlist);
+    localStorage.setItem("wishlist", JSON.stringify(updatedWishlist)); // Ensure immediate update
   };
 
   return (
